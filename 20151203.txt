@@ -1,0 +1,23 @@
+1.The length of RTP Packets` head is 12 Bytes. Besides, in front of each packet to YS platform there are 4 Bytes information which indicates the length of packets and something else. 
+2.取流过程：
+
+client--1-->(ncg_this--2--->media_this--3-->ncg_this)--4-->(ncg_down--5-->media_down--6-->ncg_down)--7-->(ncg_down_down--8-->media_down_down--9-->ncg_down_down)
+
+3.()中为一级中的一次交互，交互过程中会交互收发流的端口。
+
+4.NCG作为中间级转发流时，收下级流端口=向上级发流端口
+
+5.MEDIA项目：streamLayer/stream_sdk=向本级取流     /streamLayer/stream_rtsp=普通的udp类，收下级流并转发     /streamLayer/sream_cascade=client--(RTSP)-->media_this--(cascade_client.dll)-->ncg_this-->...取流
+
+6.URL:"rtsp://IP:PORT rtsp://IP:port rtsp://IP:port"   从后向前依次为：向本机取流的URL+上级media的地址端口+在上级media的地址端口+。。。
+URL中的端口为media和上级media进行rtsp协议交互的端口，此端口固定：7089，因此在上级取URL时不需要ncg和media的交互，直接给出来即可。
+
+7.而后，上级向本级media取流，通过rtsp方式，则media向下级media取流，通过rtsp方式，交互过程中互换了收发流的端口。（纯UDP是在NCG的SIP信令交互时互换的收发流端口。）
+
+8.cascade_client库中的streamLayer是rtsp协议的交互取流。udpwithouturl纯UDP。 udp：client->ncg_this为udp,下面为tcp.
+
+
+总结起来取流的过程种类：
+1）client->media_this通过rtsp,media_this到下级取流通过udp，这时候media_this会调用cascade_client库去本级ncg取流，最终是下级的media推上来的
+2）纯udp方式取流，url：UDP
+3）rtsp协议取流：从下级逐层得到url，从上级根据url向下级请求流，然后剥离url后继续向下，最终通过tcp两两级建立tcp连接并取得流。tcp连接是上级media向下级media发起的连接。
