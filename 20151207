@@ -1,0 +1,2 @@
+1.确定解码用什么解码库通过decodeTag的值确认，对内SDK会传输这个值，且在推送点位时候会推送给上级。
+2.rtsp:rtsp_mgr:loopcontext:disconn_request:play:
