@@ -1,0 +1,3 @@
+1.In the sdk_res.cpp, the loopcmd() function is called in a single thread process. In this function, only after the node is pushed to cms successfully, the node could be deleted from list.
+As a result, if SDK function SaveOrUpdateCatalog did not return, the following request node could not be reached and pushed to cms.
+2.

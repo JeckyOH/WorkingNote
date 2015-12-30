@@ -1,0 +1,6 @@
+1.ulayer class: stream-media && media(3.0) will not send register command to ulayer, but to send other commands directly to ulayer. And ulayer will process these commands in ProcRawData->ProcClientReqMsg.
+
+2.decode type/tag:standard: new hik device. hikvision:new and old hik devices.  dahua:dahua devices.
+
+3.4CIF/D1:736*576  CIF:3XX*2XX;   1080P:1980*1080   720:1024*720
+
