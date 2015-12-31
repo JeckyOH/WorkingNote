@@ -1,0 +1,8 @@
+1.Index Code and Parent Index etc. are static, and we add adjusted index and adjusted parent code to indicate the costumed tree.
+When user need to share resources to upper or local platform.
+Web App will transfer index and shareIndex as index cade and adjusted index code, in the processing, we use index to search any specific info about resources, but we use adjustedindex as share index.
+Web App will transfer parentIndex when resource is in the original tree and adjustedParentIndex when resource is in the customed tree.
+We need not to distinguash resource tree, just to transfer the index and shareIndex to upper and local as web app transfer to us.
+2. When we need to transfer codes in terms of parrent indexCode, we use adjustedParentCode.
+3.JUST TO REMEMBER: Index Code and Parent Index Code are static and used to search specific info. Any process is onto the adjusted- codes.
+
