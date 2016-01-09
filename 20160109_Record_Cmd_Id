@@ -1,0 +1,6 @@
+1.目录查询时候的各种context的cmdId.
+ulayer模块处理收到的对本级请求中设置FILE_LIST_REQ放到media模块
+ulayer模块处理受到的对下级请求中设置FILE_LIST_req放到DB33模块
+DB33模块处理收到的上级GB请求，设置RECORD_INFO_RSP放到media模块、
+DB33模块处理受到的上级DB请求，设置FILE_LIST_REQ放到MEDIA模块
+
